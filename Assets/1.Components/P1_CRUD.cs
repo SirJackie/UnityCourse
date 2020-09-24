@@ -4,10 +4,11 @@ using System.Collections;
 public class P1_CRUD : MonoBehaviour {
 
 	// Options
-	public bool GetComponent;
-	public bool AddComponent;
-	public bool UpdateTransformComponent;
-	public bool DeleteRendererComponent;
+	public bool GetComponent = false;
+	public bool AddComponent = false;
+	public bool UpdateTransformComponent = false;
+	public bool DeleteRendererComponent = false;
+	public bool EnableRendererComponent = true;
 
 	// Use this for initialization
 	void Start () {
@@ -35,6 +36,16 @@ public class P1_CRUD : MonoBehaviour {
 			Destroy (r);
 		}
 
+		// Enable Renderer Component
+		if (EnableRendererComponent == true) {
+			Renderer r = gameObject.GetComponent<Renderer> ();
+			r.enabled = true;
+		}
+		else{
+			Renderer r = gameObject.GetComponent<Renderer> ();
+			r.enabled = false;
+		}
+
 	}
 	
 	// Update is called once per frame
@@ -47,6 +58,16 @@ public class P1_CRUD : MonoBehaviour {
 		} else {
 			Transform t = gameObject.GetComponent<Transform> ();
 			t.position = new Vector3 (1.5f, 1.0f, 1.5f);
+		}
+
+		// Enable Renderer Component
+		if (EnableRendererComponent == true) {
+			Renderer r = gameObject.GetComponent<Renderer> ();
+			r.enabled = true;
+		}
+		else{
+			Renderer r = gameObject.GetComponent<Renderer> ();
+			r.enabled = false;
 		}
 
 	}

@@ -13,35 +13,35 @@ public class P4_GetKeyTest : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		float DeltaX = 0f;
-		float DeltaY = 0f;
-		float DeltaZ = 0f;
+		// Rotate
+		float MouseX = Input.GetAxis ("Mouse X");
+		float MouseY = Input.GetAxis ("Mouse Y");
+
+		transform.Rotate (-MouseY, 0, 0);
+		transform.Rotate (0, MouseX, 0, Space.World);
+
+
+		// Position
+		var DeltaPosition =  new Vector3(0, 0, 0);
 
 		if (Input.GetKey (KeyCode.W)) {
-			DeltaZ -= Speed;
+			DeltaPosition -= Vector3.forward;
 		}
 
 		if (Input.GetKey (KeyCode.S)) {
-			DeltaZ += Speed;
+			DeltaPosition -= Vector3.back;
 		}
 
 		if (Input.GetKey (KeyCode.A)) {
-			DeltaX += Speed;
+			DeltaPosition -= Vector3.left;
 		}
 
 		if (Input.GetKey (KeyCode.D)) {
-			DeltaX -= Speed;
+			DeltaPosition -= Vector3.right;
 		}
 
-		Transform t = gameObject.GetComponent<Transform> ();
-		var DeltaPosition =  new Vector3 (
-			DeltaX,
-			DeltaY,
-			DeltaZ
-		);
 		DeltaPosition.Normalize ();
-		DeltaPosition *= Speed;
-		t.position += DeltaPosition;
+		transform.position += DeltaPosition * Speed;
 
 	}
 }

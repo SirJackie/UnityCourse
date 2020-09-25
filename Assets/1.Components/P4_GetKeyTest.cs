@@ -30,23 +30,23 @@ public class P4_GetKeyTest : MonoBehaviour {
 		var DeltaPosition =  new Vector2(0, 0);
 
 		if (Input.GetKey (KeyCode.W)) {
-			DeltaPosition.y -= 1;
-		}
-
-		if (Input.GetKey (KeyCode.S)) {
 			DeltaPosition.y += 1;
 		}
 
-		if (Input.GetKey (KeyCode.A)) {
-			DeltaPosition.x += 1;
+		if (Input.GetKey (KeyCode.S)) {
+			DeltaPosition.y -= 1;
 		}
 
-		if (Input.GetKey (KeyCode.D)) {
+		if (Input.GetKey (KeyCode.A)) {
 			DeltaPosition.x -= 1;
 		}
 
+		if (Input.GetKey (KeyCode.D)) {
+			DeltaPosition.x += 1;
+		}
+
 		DeltaPosition.Normalize ();
-		Vector3 RotatedPosition = RotateRound (new Vector3 (DeltaPosition.x, 0, DeltaPosition.y) * Speed, new Vector3 (0, 0, 0), Vector3.up, transform.rotation.y);
+		Vector3 RotatedPosition = RotateRound (new Vector3 (DeltaPosition.x, 0, DeltaPosition.y) * Speed, new Vector3 (0, 0, 0), Vector3.up, transform.eulerAngles.y);
 		Debug.Log (transform.rotation.y);
 		transform.position += RotatedPosition;
 

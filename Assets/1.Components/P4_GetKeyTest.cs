@@ -9,6 +9,11 @@ public class P4_GetKeyTest : MonoBehaviour {
 	void Start () {
 	
 	}
+
+	public Vector3 RotateRound(Vector3 position, Vector3 center, Vector3 axis, float angle)
+	{
+		return Quaternion.AngleAxis(angle, axis) * (position - center) + center;
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -22,26 +27,28 @@ public class P4_GetKeyTest : MonoBehaviour {
 
 
 		// Position
-		var DeltaPosition =  new Vector3(0, 0, 0);
+		var DeltaPosition =  new Vector2(0, 0);
 
 		if (Input.GetKey (KeyCode.W)) {
-			DeltaPosition -= Vector3.forward;
+			DeltaPosition.y -= 1;
 		}
 
 		if (Input.GetKey (KeyCode.S)) {
-			DeltaPosition -= Vector3.back;
+			DeltaPosition.y += 1;
 		}
 
 		if (Input.GetKey (KeyCode.A)) {
-			DeltaPosition -= Vector3.left;
+			DeltaPosition.x += 1;
 		}
 
 		if (Input.GetKey (KeyCode.D)) {
-			DeltaPosition -= Vector3.right;
+			DeltaPosition.x -= 1;
 		}
 
 		DeltaPosition.Normalize ();
-		transform.position += DeltaPosition * Speed;
+		Vector3 RotatedPosition = RotateRound (new Vector3 (DeltaPosition.x, 0, DeltaPosition.y) * Speed, new Vector3 (0, 0, 0), Vector3.up, transform.rotation.y);
+		Debug.Log (transform.rotation.y);
+		transform.position += RotatedPosition;
 
 	}
 }

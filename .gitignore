@@ -1,6 +1,7 @@
 /Library/
 /Windows Platform/
 /Temp/
+/obj/
 /UnityCourse.sln
 /UnityCourse.userprefs
 /Assembly-CSharp.csproj

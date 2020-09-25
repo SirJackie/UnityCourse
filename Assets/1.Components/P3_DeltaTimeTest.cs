@@ -23,6 +23,6 @@ public class P3_DeltaTimeTest : MonoBehaviour {
 		float NowYPosition = -1 * (NowXPosition - 0f) * (NowXPosition - 0f) + 3f;
 
 		Transform t = gameObject.GetComponent<Transform> ();
-		t.position = new Vector3(NowXPosition, NowYPosition, 1.5f);
+		t.position = new Vector3(NowXPosition, NowYPosition, -1.5f);
 	}
 }

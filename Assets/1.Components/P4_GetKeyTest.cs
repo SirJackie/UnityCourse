@@ -26,7 +26,7 @@ public class P4_GetKeyTest : MonoBehaviour {
 		transform.Rotate (0, MouseX, 0, Space.World);
 
 
-		// Position
+		// Move
 		var DeltaPosition =  new Vector2(0, 0);
 
 		if (Input.GetKey (KeyCode.W)) {
@@ -46,8 +46,12 @@ public class P4_GetKeyTest : MonoBehaviour {
 		}
 
 		DeltaPosition.Normalize ();
-		Vector3 RotatedPosition = RotateRound (new Vector3 (DeltaPosition.x, 0, DeltaPosition.y) * Speed, new Vector3 (0, 0, 0), Vector3.up, transform.eulerAngles.y);
-		Debug.Log (transform.rotation.y);
+
+		Vector3 RotatedPosition = RotateRound (
+			                          new Vector3 (DeltaPosition.x, 0, DeltaPosition.y) * Speed,
+			                          new Vector3 (0, 0, 0),
+			                          Vector3.up,
+			                          transform.eulerAngles.y);
 		transform.position += RotatedPosition;
 
 	}

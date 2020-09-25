@@ -4,6 +4,7 @@ using System.Collections;
 public class P4_GetKeyTest : MonoBehaviour {
 
 	public float Speed = 0.1f;
+	private bool IsCursorLocked = false;
 
 	// Use this for initialization
 	void Start () {
@@ -14,9 +15,28 @@ public class P4_GetKeyTest : MonoBehaviour {
 	{
 		return Quaternion.AngleAxis(angle, axis) * (position - center) + center;
 	}
+
+	void ResponseCursor(){
+		if (Input.GetKey(KeyCode.Escape)) {
+			IsCursorLocked = false;
+		} else if(Input.GetMouseButton(0) == true){
+			IsCursorLocked = true;
+		}
+
+		if (IsCursorLocked == true) {
+			Cursor.lockState = CursorLockMode.Locked;
+			Cursor.visible = false;
+		} else if (IsCursorLocked == false) {
+			Cursor.lockState = CursorLockMode.None;
+			Cursor.visible = true;
+		}
+	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		// Response the Cursor
+		ResponseCursor ();
 
 		// Rotate
 		float MouseX = Input.GetAxis ("Mouse X");
